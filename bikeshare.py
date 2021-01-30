@@ -27,7 +27,7 @@ def get_filters():
         else:
             isValidCity = False
             print('Please pick a listed city')
-    # TO DO: get user input for month (all, january, february, ... , june)
+    # TO DO: get user input for month (all, january, february, march, april, may , june)
         if isValidCity:
             isValidTimeInput = False
             while not isValidTimeInput:
@@ -42,14 +42,14 @@ def get_filters():
                 elif time == 'day':
                     day = input('Which day - monday, tuesday, wednesday, thursday, friday, saturday, sunday?\n').lower()
                     if day in ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'):
-                        isValidTimeInput = True                    
+                        isValidTimeInput = True
                 elif time == 'none':
                     isValidTimeInput = True
                 else:
                     isValidTimeInput = False
                     print ('Please enter a valid response')
 
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+    # TO DO: get user input for day of week (all, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 
 
     print('-'*40)
@@ -69,7 +69,7 @@ def load_data(city, month, day):
     """
     df = pd.read_csv(CITY_DATA[city])
     return df
-    
+
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -81,7 +81,7 @@ def time_stats(df):
     df['month'] = df_start_time.dt.month
     max_month_int = df['month'].mode()
     print('Month: ',months[max_month_int[0] - 1].title())
-   
+
     # TO DO: display the most common day of week
     df['day_of_week'] = df_start_time.dt.day_name()
     max_day = df['day_of_week'].mode()
@@ -155,20 +155,20 @@ def user_stats(df):
         print('Gender of users: ',gender)
     except KeyError:
         print('No Gender reported')
-    
+
     # TO DO: Display earliest, most recent, and most common year of birth
     try:
         earliest_birth = int(df['Birth Year'].min())
         print('Earliest year of birth: ',earliest_birth)
     except KeyError:
         print('No Birth Year reported')
-    
+
     try:
         most_recent_birth = int(df['Birth Year'].max())
         print('Most recent year of birth: ',most_recent_birth)
     except KeyError:
         print('No Birth Year reported')
-    
+
     try:
         most_common_birth_year = int(df['Birth Year'].mode())
         print('Most common year of birth: ',most_common_birth_year)
@@ -177,7 +177,7 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
     x = 0
     while True:
@@ -189,7 +189,7 @@ def user_stats(df):
             break
         else:
             print('Enter a valid response as Y or N')
-    
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -199,8 +199,8 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-     
-            
+
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
