@@ -6,7 +6,7 @@ January 30, 2021
 ### Project Title
 Replace the Project Title
 
-Git Commands Documentation project
+Udacity Git Commands Documentation project
 
 ### Description
 Describe what your project is about and what it does
